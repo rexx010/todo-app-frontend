@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="landing-page" id="landing">
+        <h4 id="heading">Task Master</h4>
+
+        <div class="welcome">
+            <img src="task2.svg" alt="icon">
+            <h2>Welcome to MyTask Master App</h2>
+            <p>Organize your day, simplify your life. Task Master <br> helps you to manage tasks efficiently.</p>
+        </div>
+        <div class="btn">
+            <button class="loginbtn white-btn">Log in</button>
+            <button class="registerbtn dark-btn">Register</button>
+        </div>
+    </div>
+
+
+    <!-- Login Page -->
+    <div class="login-page hidden" id="loginPage">
+        <h4>Login</h4>
+
+        <div class="form">
+            <div>
+                <label for="login-username">Username</label>
+                <input type="text" placeholder="username" id="login-username" required>
+            </div>
+
+            <div>
+                <label for="login-password">Password</label>
+                <input type="password" placeholder="password" id="login-password" required>
+            </div>
+        </div>
+        
+        <div class="btn">
+            <button type="submit" class="login-submit white-btn">Log in</button>
+        </div>
+        <p>Don't have an account? <a href="#">Create an Account</a></p>
+    </div>
+
+
+    <!-- Registration Page -->
+    <div class="registration-page hidden" id="registerPage">
+        <h4>Register</h4>
+
+        <div class="form">
+            <div>
+                <label for="register-username">Username</label>
+                <input type="text" placeholder="username" id="register-username" required>
+            </div>
+
+            <div>
+                <label for="register-email">Email</label>
+                <input type="email" placeholder="email" id="register-email" required>
+            </div>
+
+            <div>
+                <label for="register-password">Password</label>
+                <input type="password" placeholder="password" id="register-password" required>
+            </div>
+        </div>
+        
+        <div class="btn">
+            <button type="submit" class="register-submit white-btn">Sign Up</button>
+        </div>
+
+        <p>Already have an account? <a href="#" id="backToLogin">Back to Login</a></p>
+    </div>
+
+
+    <!-- Main App -->
+    <div class="todo-app hidden" id="mainApp">
+        <aside class="sidebar">
+            <h2>My Todo</h2>
+            <ul>
+                <li>Dashboard</li>
+                <li class="active">Tasks</li>
+                <li>Goal</li>
+                <li>Calendar</li>
+            </ul>
+            <div class="sidebar-footer">
+                <ul>
+                    <button>Settings</button>
+                    <button>Log Out</button>
+                </ul>
+            </div>
+        </aside>
+
+        <main>
+            <header>
+                <div class="profile">
+                    <h2>My Task</h2>
+                    <h3>Profile:</h3>
+                    <h4>General Rexx</h4>
+                </div>
+            </header>
+
+            <div class="section">
+                <input type="text" placeholder="Search for a task here..." class="hidden">
+                <button class="search-btn hidden">🔍</button>
+                <!-- To Do Section -->
+                <div class="task-section" id="todo">
+                    <button class="dropdown-btn"><h3>To Do ⮟</h3></button>
+                    <div class="dropdown-content" id="todoContent">
+                        <ul class="tasklist" id="todoList">
+                            <li>
+                                <input type="checkbox">
+                                <div class="task-info">
+                                    <h4>Website Development</h4>
+                                    <p>Finish building the landing page</p>
+                                </div>
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Unchecked Section -->
+                <div class="task-section" id="inprogress">
+                    <button class="dropdown-btn"><h3>Unchecked ⮟</h3></button>
+                    <div class="dropdown-content" id="inprogressContent">
+                        <ul class="tasklist" id="inprogressList">
+                           
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Checked Section -->
+                <div class="task-section" id="completed">
+                    <button class="dropdown-btn"><h3>Checked ⮟</h3></button>
+                    <div class="dropdown-content" id="completedContent">
+                        <ul class="tasklist" id="completedList">
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Add Task -->
+                <div class="add-task">
+                    <button id="openPopupBtn">➕ Add Task</button>
+                </div>
+
+                <!-- Popup -->
+                <div class="popup" id="taskPopup">
+                    <div class="popup-content">
+                        <span class="close-btn" id="closePopupBtn">&times;</span>
+                        <h3>Add New Task</h3>
+                        <form id="taskForm">
+                            <label for="taskTitle">Task Title</label>
+                            <input type="text" id="taskTitle" placeholder="Enter task title" required>
+
+                            <label for="taskDesc">Task Description</label>
+                            <textarea id="taskDesc" placeholder="Enter task description" required></textarea>
+                            
+                            <button type="submit" class="popup-add-btn">Add Task</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="to do.js"></script>
+</body>
+</html>
