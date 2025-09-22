@@ -2,12 +2,131 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
+
+body {
+  font-family: "Work Sans", sans-serif;
+  background: #f7f8fc;
+  color: #333;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: linear-gradient(to right, #1e1e2f, #0056b3);
+  color: white;
+}
+
+.landing-page h4 {
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.landing-page .welcome img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.landing-page p {
+  font-size: 16px;
+  margin: 15px 0;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.white-btn,
+.dark-btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.white-btn {
+  background: #fff;
+  color: #1e1e2f;
+}
+
+.dark-btn {
+  background: #1e1e2f;
+  color: #fff;
+}
+
+.white-btn:hover,
+.dark-btn:hover {
+  transform: scale(1.05);
+}
+
+.login-page .form,
+.registration-page .form {
+  width: 360px;
+  max-width: 90%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 auto;
+}
+
+.login-page .form div,
+.registration-page .form div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+  margin-left: 2px;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+  font-size: 14px;
+}
+
+.login-page .btn,
+.registration-page .btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.login-page p {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
 .todo-app {
   display: flex;
   height: 100vh;
 }
+
 .sidebar {
   width: 220px;
   background: #1e1e2f;
@@ -15,8 +134,10 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  position: fixed;
+  height: 100vh;
 }
+
 .sidebar h2 {
   margin-bottom: 20px;
 }
@@ -30,27 +151,22 @@
   cursor: pointer;
 }
 
+.sidebar ul{
+  margin-bottom: 350px;
+}
+
 .sidebar ul li.active {
   color: #00aaff;
   font-weight: bold;
 }
 
-.sidebar-footer {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .sidebar-footer button {
-  /* width: 100%; */
   padding: 10px;
   border: none;
   border-radius: 6px;
   background: #00aaff;
   color: white;
   cursor: pointer;
-  gap: 30px;
 }
 
 .sidebar-footer button:hover {
@@ -59,8 +175,9 @@
 
 main {
   flex: 1;
-  background: #f7f8fc;
   padding: 20px;
+  margin-left: 220px;
+  background: #f7f8fc;
 }
 
 header {
@@ -77,22 +194,200 @@ header input {
 .profile {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.profile img {
-  width: 35px;
-  border-radius: 50%;
-  margin-right: 10px;
+.profile h3{
+  padding-left: 750px;
 }
 
 .task-section {
-  margin: 20px 0;
+  margin: 15px auto;
   background: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+  font-size: 14px;
+  overflow-y: auto;
 }
 
-.task-list {
-  list-style: none;
+.dropdown-btn {
+  width: 100%;
+  padding: 12px;
+  text-align: left;
+  border: none;
+  background: #f5f5f5;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.dropdown-content {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 15px;
+  display: block;
+}
+
+.tasklist li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fafafa;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.tasklist li input[type="checkbox"] {
+  flex-shrink: 0;
+}
+
+.task-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+}
+
+.task-info h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.task-info p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.edit-btn,
+.delete-btn {
+  margin-left: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background: #116d3b;
+  color: #fff;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: #fff;
+}
+
+.add-task {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.add-task button {
+  padding: 10px 13px;
+  cursor: pointer;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 10%;
+  font-size: 10px;
+  transition: 0.3s;
+}
+
+.add-task button:hover {
+  background: #0056b3;
+  transform: scale(1.1);
+}
+
+.popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.popup.show {
+  visibility: visible;
+}
+
+.popup-content {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 95%;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.popup-content h3 {
+  margin-bottom: 10px;
+  text-align: center;
+  color: #1e1e2f;
+}
+
+.popup-content label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.popup-content input,
+.popup-content textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  outline: none;
+}
+
+.popup-content textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.popup-content .popup-add-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.popup-content .popup-add-btn:hover {
+  background: #0056b3;
+}
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #555;
+}
+
+.close-btn:hover {
+  color: #000;
 }
