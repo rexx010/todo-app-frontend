@@ -71,6 +71,8 @@ registerSubmit.addEventListener("click", async () => {
       credentials: "include"
     });
 
+    const data = await response.json()
+    
     if (response.ok) {
       alert("Registration successful! Please login.");
       registerPage.classList.add("hidden");
