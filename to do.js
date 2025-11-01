@@ -112,6 +112,7 @@ registerSubmit.addEventListener("click", async () => {
   }
 });
 
+
 loginSubmit.addEventListener("click", async () => {
   clearErrors("#loginPage");
 
@@ -129,15 +130,31 @@ loginSubmit.addEventListener("click", async () => {
       credentials: "include"
     });
 
-    if (response.ok) {
-      const message = await response.json();
-      showMainApp(message);
+    const data = await response.json();
 
+    if (response.ok) {
+      showMainApp(data);
       await fetchTasks();
       await fetchAllTasks();
     } else {
-      const error = await response.text();
-      showError("login-password", error || "Login failed.");
+      // Handle validation errors (field-specific errors)
+      if (data.username) {
+        showError("login-username", data.username);
+      }
+      if (data.password) {
+        showError("login-password", data.password);
+      }
+      
+      // Handle single error message from backend
+      if (data.error) {
+        // Show error under password field (common for login failures)
+        showError("login-password", data.error);
+      }
+      
+      // Fallback if no error property found
+      if (!data.error && !data.username && !data.password) {
+        showError("login-password", "Login failed. Please try again.");
+      }
     }
   } catch (err) {
     console.error(err);
