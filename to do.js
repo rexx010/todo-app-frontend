@@ -13,7 +13,7 @@ const backToLoginLink = document.getElementById("backToLogin");
 const logoutBtn = document.querySelector(".sidebar-footer button:last-child");
 const profileName = document.querySelector(".profile h4");
 
-const API_BASE = "http://localhost:8080/api/auth";
+const API_BASE = "https://my-todo-app-m3ny.onrender.com/api/auth";
 
 function showError(inputId, message) {
   let input = document.getElementById(inputId);
@@ -199,7 +199,7 @@ dropdownButtons.forEach(button => {
 
 async function fetchTasks() {
   try {
-    const response = await fetch("http://localhost:8080/api/todo/gettask", {
+    const response = await fetch("https://my-todo-app-m3ny.onrender.com/api/todo/gettask", {
       method: "GET",
       credentials: "include"
     });
@@ -236,7 +236,7 @@ async function fetchTasks() {
 
 async function fetchAllTasks() {
   try {
-    const response = await fetch("http://localhost:8080/api/todo/gettask", {
+    const response = await fetch("https://my-todo-app-m3ny.onrender.com/api/todo/gettask", {
       method: "GET",
       credentials: "include"
     });
@@ -294,7 +294,7 @@ taskForm.addEventListener("submit", async (e) => {
   if (!title || !description) return;
 
   try {
-    const response = await fetch("http://localhost:8080/api/todo/add", {
+    const response = await fetch("https://my-todo-app-m3ny.onrender.com/api/todo/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -345,7 +345,7 @@ document.getElementById("todoList").addEventListener("click", async (e) => {
   if (e.target.classList.contains("delete-btn")) {
     if (confirm(`Are you sure you want to delete the task "${title}"?`)) {
       try {
-        const response = await fetch(`http://localhost:8080/api/todo/delete/${taskId}`, {
+        const response = await fetch(`https://my-todo-app-m3ny.onrender.com/api/todo/delete/${taskId}`, {
           method: "DELETE",
           credentials: "include"
         });
@@ -365,7 +365,7 @@ document.getElementById("todoList").addEventListener("click", async (e) => {
     const newDescription = prompt("Edit Description:", description);
     if (newTitle && newDescription) {
       try {
-        const response = await fetch(`http://localhost:8080/api/todo/update/${taskId}`, {
+        const response = await fetch(`https://my-todo-app-m3ny.onrender.com/api/todo/update/${taskId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ title: newTitle, description: newDescription, status: li.querySelector("input").checked ? "CHECKED" : "UNCHECKED" }),
@@ -385,7 +385,7 @@ document.getElementById("todoList").addEventListener("click", async (e) => {
   } else if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
     const status = e.target.checked ? "CHECKED" : "UNCHECKED";
     try {
-      const response = await fetch(`http://localhost:8080/api/todo/mark/${taskId}`, {
+      const response = await fetch(`https://my-todo-app-m3ny.onrender.com/api/todo/mark/${taskId}`, {
         method: "GET",
         credentials: "include"
       });

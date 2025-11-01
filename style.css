@@ -176,14 +176,16 @@ body {
 main {
   flex: 1;
   padding: 20px;
-  margin-left: 220px;
+  margin-left: 220px; 
   background: #f7f8fc;
+  height: 100vh;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 header input {
