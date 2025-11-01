@@ -51,7 +51,6 @@ function showMainApp(user) {
     profileName.textContent = user.username;
   }
 }
-
 registerSubmit.addEventListener("click", async () => {
   clearErrors("#registerPage");
 
@@ -71,26 +70,40 @@ registerSubmit.addEventListener("click", async () => {
       credentials: "include"
     });
 
-    const data = await response.json()
+    const data = await response.json();
     
     if (response.ok) {
       alert("Registration successful! Please login.");
       registerPage.classList.add("hidden");
       loginPage.classList.remove("hidden");
-    } else  {
-      // If backend returns multiple errors, show each next to the correct input
-      if (data.errors) {
-        // assuming backend sends { errors: { username: "msg", email: "msg" } }
-        for (const field in data.errors) {
-          const message = data.errors[field];
-          const inputId = `register-${field}`;
-          showError(inputId, message);
+    } else {
+      // Handle validation errors (field-specific errors)
+      if (data.username) {
+        showError("register-username", data.username);
+      }
+      if (data.email) {
+        showError("register-email", data.email);
+      }
+      if (data.password) {
+        showError("register-password", data.password);
+      }
+      
+      // Handle single error message from backend
+      if (data.error) {
+        // Check if it's about email or username to show error in right place
+        if (data.error.includes("email")) {
+          showError("register-email", data.error);
+        } else if (data.error.includes("username")) {
+          showError("register-username", data.error);
+        } else {
+          // Generic error - show under username field or use alert
+          showError("register-username", data.error);
         }
-      } else if (data.message) {
-        // fallback single message
-        showError("register-username", data.message);
-      } else {
-        alert("Registration failed.");
+      }
+      
+      // Fallback if no error property found
+      if (!data.error && !data.username && !data.email && !data.password) {
+        alert("Registration failed. Please try again.");
       }
     }
   } catch (err) {
