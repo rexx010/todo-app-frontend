@@ -75,10 +75,18 @@ registerSubmit.addEventListener("click", async () => {
       alert("Registration successful! Please login.");
       registerPage.classList.add("hidden");
       loginPage.classList.remove("hidden");
-    } else {
-      const error = await response.json();
-      if (error.message) {
-        showError("register-username", error.message);
+    } else  {
+      // If backend returns multiple errors, show each next to the correct input
+      if (data.errors) {
+        // assuming backend sends { errors: { username: "msg", email: "msg" } }
+        for (const field in data.errors) {
+          const message = data.errors[field];
+          const inputId = `register-${field}`;
+          showError(inputId, message);
+        }
+      } else if (data.message) {
+        // fallback single message
+        showError("register-username", data.message);
       } else {
         alert("Registration failed.");
       }
